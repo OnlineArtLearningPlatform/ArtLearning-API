@@ -29,12 +29,8 @@ const userSchema = new mongoose.Schema({
     role: {
         type: String,
         default: 'student',
-        enum: ['student', 'admin']
-    },
-    resetpasswordToken: {
-        type: String,
-
-    },
+        enum: ['student', 'teacher']
+    }
 }, { timestamps: true });
 
 module.exports = mongoose.model('User', userSchema);

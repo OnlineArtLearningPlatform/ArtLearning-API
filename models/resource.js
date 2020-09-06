@@ -5,7 +5,11 @@ const resourceSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Course'
     },
-    video: {
+    file: {
+        type: String,
+        require: true
+    },
+    file: {
         type: String,
         require: true
     }

@@ -4,12 +4,14 @@ const morgan = require('morgan');
 
 //INITILIZE ROUTERS HERE
 const userRouter = require('./routes/users');
+const courseRouter = require('./routes/course');
 
 
 const dotenv = require('dotenv').config();
 const cors = require('cors');
 const auth = require('./auth');
 const uploadRouter = require('./routes/upload');
+
 
 const app = express();
 app.options('*', cors());
@@ -31,7 +33,8 @@ mongoose.connect(process.env.URL, {
 
 //USER ROUTERS
 app.use('/upload', uploadRouter);
-//app.use('/users', userRouter);
+app.use('/users', userRouter);
+app.use('/courses', courseRouter);
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
