@@ -9,7 +9,7 @@ const resourceSchema = new mongoose.Schema({
         type: String,
         require: true
     },
-    file: {
+    fileTitle: {
         type: String,
         require: true
     }

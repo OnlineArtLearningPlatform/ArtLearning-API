@@ -8,6 +8,11 @@ const enrollSchema = new mongoose.Schema({
     student: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
+    },
+    status: {
+        type: String,
+        default: 'Not-Approved',
+        enum: ['Not-Approved', 'Approved']
     }
 }, { timestamps: true })
 

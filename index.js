@@ -5,7 +5,8 @@ const morgan = require('morgan');
 //INITILIZE ROUTERS HERE
 const userRouter = require('./routes/users');
 const courseRouter = require('./routes/course');
-
+const enrollRouter = require('./routes/enroll');
+const resourceRouter = require('./routes/resource');
 
 const dotenv = require('dotenv').config();
 const cors = require('cors');
@@ -35,6 +36,8 @@ mongoose.connect(process.env.URL, {
 app.use('/upload', uploadRouter);
 app.use('/users', userRouter);
 app.use('/courses', courseRouter);
+app.use('/enroll', enrollRouter);
+app.use('/resource', resourceRouter);
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
