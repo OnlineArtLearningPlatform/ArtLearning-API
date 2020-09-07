@@ -7,6 +7,8 @@ const userRouter = require('./routes/users');
 const courseRouter = require('./routes/course');
 const enrollRouter = require('./routes/enroll');
 const resourceRouter = require('./routes/resource');
+const queryRouter = require('./routes/query');
+const answerRouter = require('./routes/answer');
 
 const dotenv = require('dotenv').config();
 const cors = require('cors');
@@ -38,6 +40,8 @@ app.use('/users', userRouter);
 app.use('/courses', courseRouter);
 app.use('/enroll', enrollRouter);
 app.use('/resource', resourceRouter);
+app.use('/query', queryRouter);
+app.use('/answer', answerRouter);
 
 app.use((err, req, res, next) => {
     console.error(err.stack);
