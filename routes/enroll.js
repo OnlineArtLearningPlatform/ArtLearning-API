@@ -79,4 +79,21 @@ router.route("/:id")
             })
             .catch(next);
     })
+
+//SPECIFIC ENROLLMENT
+router.route("/enrollmentOf/:cid")
+    .get((req, res, next) => {
+        Resource.find({ course: req.params.cid })
+            .populate({
+                path: 'course'
+            })
+            .populate({
+                path: 'student'
+            })
+            .then(resource => {
+                if (resource == null) throw new Error("Enrollment not available.");
+                res.json(resource);
+            })
+            .catch(next);
+    })
 module.exports = router;
