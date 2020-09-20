@@ -40,7 +40,7 @@ router.route("/")
 //SPECIFIC ENROLLMENT
 
 router.route("/:id")
-    .get(auth.verifyUser, (req, res, next) => {
+    .get((req, res, next) => {
         Resource.findOne({ _id: req.params.id })
             .populate({
                 path: 'course'

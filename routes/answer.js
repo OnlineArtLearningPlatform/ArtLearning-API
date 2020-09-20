@@ -41,6 +41,21 @@ router.route("/")
     })
 
 //SPECIFIC Answer
+router.route('/viewRepliesOf/:qid')
+    .get(auth.verifyUser, (req, res, next) => {
+        Answer.find({ query: req.params.qid })
+            .populate({
+                path: 'query'
+            })
+            .populate({
+                path: 'answeredBy'
+            })
+            .then(answer => {
+                if (answer == null) throw new Error("Reply not available.");
+                res.json(answer);
+            })
+            .catch(next);
+    })
 
 router.route("/:id")
     .get((req, res, next) => {

@@ -5,6 +5,9 @@ const enrollSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Course'
     },
+    by: {
+        type: String
+    },
     student: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'

@@ -14,7 +14,7 @@ const courseSchema = new mongoose.Schema({
     },
     price: {
         type: String,
-        require: true
+        default: 'Free'
     },
     owner: {
         type: mongoose.Schema.Types.ObjectId,
@@ -26,7 +26,7 @@ const courseSchema = new mongoose.Schema({
     },
     courseType: {
         type: String,
-        default: 'free'
+        default: 'Free'
     }
 }, { timestamps: true });
 

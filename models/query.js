@@ -1,6 +1,9 @@
 const mongoose = require('mongoose');
 
 const querySchema = new mongoose.Schema({
+    category: {
+        type: String
+    },
     query: {
         type: String,
         require: true

@@ -40,6 +40,20 @@ router.route("/")
             .catch(next);
     })
 
+//MY ENROLLMENT
+
+router.route("/myEnrollment")
+    .get(auth.verifyUser, (req, res, next) => {
+        Enroll.find({ student: req.user._id })
+            .populate({
+                path: 'course'
+            })
+            .then((cart) => {
+                if (cart == null) throw new Error("No products had been added to cart.");
+                res.json(cart);
+            }).catch(next)
+    })
+
 //SPECIFIC ENROLLMENT
 
 router.route("/:id")
@@ -71,7 +85,7 @@ router.route("/:id")
             })
             .catch(next);
     })
-    .delete((req, res, next) => {
+    .delete(auth.verifyUser, (req, res, next) => {
         Enroll.findOneAndDelete({ _id: req.params.id })
             .then(response => {
                 console.log("Enrollment deleted successfully.")
@@ -83,7 +97,7 @@ router.route("/:id")
 //SPECIFIC ENROLLMENT
 router.route("/enrollmentOf/:cid")
     .get((req, res, next) => {
-        Resource.find({ course: req.params.cid })
+        Enroll.find({ course: req.params.cid })
             .populate({
                 path: 'course'
             })
@@ -95,5 +109,6 @@ router.route("/enrollmentOf/:cid")
                 res.json(resource);
             })
             .catch(next);
-    })
+    });
+
 module.exports = router;
